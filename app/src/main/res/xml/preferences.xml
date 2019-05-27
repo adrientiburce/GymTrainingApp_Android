@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="pseudos_category"
+        android:title="Les Pseudos">
+
+        <EditTextPreference
+            android:defaultValue=" "
+            android:key="pseudo"
+            android:summary="Pseudo de l'utilisateur"
+            android:title="Pseudo actuel" />
+
+        <EditTextPreference
+            android:defaultValue=" "
+            android:key="stringPseudo"
+            android:summary="Les pseudo enregistrés"
+            android:title="Pseudos" />
+
+    </PreferenceCategory>
+
+
+    <CheckBoxPreference
+        android:id="@+id/reset_btn"
+        android:defaultValue="false"
+        android:key="reset"
+        android:summary=""
+        android:onClick="clearPrefs"
+        android:title="Reset les préférences" />
+
+
+</PreferenceScreen>

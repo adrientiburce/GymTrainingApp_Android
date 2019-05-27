@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Programme de Sport</string>
+    <string name="welcomeApp">Bienvenue sur votre assistant d\'entrainement</string>
+    <string name="name">votre nom ..</string>
+    <string name="entrez_votre_nom">Entrez votre nom : </string>
+    <string name="login">GO</string>
+    <string name="welcome_message">Bienvenue</string>
+    <string name="welcome_back">Welcome back </string>
+
+    <string name="seance">Séance :</string>
+    <string name="exercice_add">Nouvel Exo</string>
+    <string name="exercice_name">nom de l\'exercice</string>
+
+    <string name="home_seance">Mes Séances</string>
+    <string name="training_name">Nom de la séance</string>
+    <string name="training_add">Nouvelle séance</string>
+</resources>
