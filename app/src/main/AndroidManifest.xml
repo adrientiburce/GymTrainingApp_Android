@@ -9,8 +9,16 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ResultActivity"></activity>
-        <activity android:name=".ExerciseActivity" />
+        <activity
+            android:name=".ExerciseActivity"
+            android:label="@string/title_activity_my_exercises"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".SessionActivity"
+            android:label="@string/title_activity_show_exercise"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ResultActivity" />
+        <activity android:name=".ListSessionActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".TrainingActivity" />
         <activity android:name=".MainActivity">

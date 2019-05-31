@@ -1,58 +1,23 @@
 package com.example.sport_app.Model;
 
-import java.io.Serializable;
-
-public class Exercise implements Serializable {
+public class Exercise {
 
     private String name;
-    private int set;
-    private int reps;
-    private double weight;
     private String muscle;
 
+    private double maxWeight;
 
-    /**
-     * Constructor with item name
-     *
-     * @param name of the item
-     */
-    public Exercise(String name) {
+    public Exercise(String name, String muscle) {
         this.name = name;
+        this.muscle = muscle;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getSet() {
-        return set;
-    }
-
-    public void setSet(int set) {
-        this.set = set;
-    }
-
-    public int getReps() {
-        return reps;
-    }
-
-    public void setReps(int reps) {
-        this.reps = reps;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
+    public String getName() {
+        return name;
     }
 
     public String getMuscle() {
         return muscle;
     }
-
-    public void setMuscle(String muscle) {
-        this.muscle = muscle;
-    }
 }
+

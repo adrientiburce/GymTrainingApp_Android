@@ -20,7 +20,7 @@ public class SettingsActivity extends PreferenceActivity {
 
     }
 
-    private void clearPrefs() {
-        PreferenceManager.getDefaultSharedPreferences(this).edit().clear().commit();
-    }
+//    private void clearPrefs() {
+//        PreferenceManager.getDefaultSharedPreferences(this).edit().clear().commit();
+//    }
 }

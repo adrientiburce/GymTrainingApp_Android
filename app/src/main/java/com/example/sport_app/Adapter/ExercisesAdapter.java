@@ -8,24 +8,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sport_app.Model.Training;
+import com.example.sport_app.Model.Exercise;
 import com.example.sport_app.R;
 
-import java.util.List;
+import java.util.HashMap;
 
-public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ItemViewHolder> {
+public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.ItemViewHolder> {
 
 
-    private final List<Training> listsToDo;
+    private final HashMap<Integer, Exercise> listExercises;
     private final OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onItemClick(Training item, int position);
+        void onItemClick(Exercise item, int position);
     }
 
 
-    public ExerciseAdapter(List<Training> listsToDo, OnItemClickListener listener) {
-        this.listsToDo = listsToDo;
+    public ExercisesAdapter(HashMap listExercises, OnItemClickListener listener) {
+        this.listExercises = listExercises;
         this.listener = listener;
     }
 
@@ -33,35 +33,38 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ItemVi
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView = inflater.inflate(R.layout.item_list, parent, false);
+        View itemView = inflater.inflate(R.layout.item_exercise, parent, false);
         return new ItemViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        Training itemData = listsToDo.get(position);
+        Exercise itemData = listExercises.get(position);
         holder.bind(itemData, listener);
 
     }
 
     @Override
     public int getItemCount() {
-        return listsToDo.size();
+        return listExercises.size();
     }
 
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView textView;
+        private final TextView textNameView;
+        private final TextView textMuscleView;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.title);
+            textNameView = itemView.findViewById(R.id.txt_exercise);
+            textMuscleView = itemView.findViewById(R.id.txt_muscle);
         }
 
-        public void bind(final Training itemData, final OnItemClickListener listener) {
+        public void bind(final Exercise itemData, final OnItemClickListener listener) {
             //get title from Ressource
-            textView.setText(itemData.getTrainingName());
+            textNameView.setText(itemData.getName());
+            textMuscleView.setText(itemData.getMuscle());
 
             // Click listener
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -74,5 +77,4 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ItemVi
             });
         }
     }
-
 }

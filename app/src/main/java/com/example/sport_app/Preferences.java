@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.example.sport_app.Model.ProfileExercise;
 import com.example.sport_app.Model.Training;
-import com.example.sport_app.Model.ProfileListToDo;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -48,19 +48,13 @@ public class Preferences {
     }
 
 
-    /**
-     * get current profile from preferences
-     *
-     * @param pseudo  pseudo of current user
-     * @param context
-     * @return ProfileListToDo
-     */
-    public static ProfileListToDo getCurrentProfile(String pseudo, Context context) {
-        String profile = getPrefs("profile_" + pseudo, context);
-        if (profile.equals("")) {
-            return new ProfileListToDo(pseudo);
+    public static ProfileExercise getProfile(Context context) {
+        String allExercises = getPrefs("exercises", context);
+        ProfileExercise exos = new Gson().fromJson(allExercises, ProfileExercise.class);
+        if (exos == null) {
+            return new ProfileExercise();
         } else {
-            return new Gson().fromJson(profile, ProfileListToDo.class);
+            return exos;
         }
     }
 
@@ -72,11 +66,11 @@ public class Preferences {
      * @param context
      * @return Training of current List
      */
-    public static Training getCurrentListToDo(String pseudo, int indexOfCurrentList, Context context) {
-        String profile = Preferences.getPrefs("profile_" + pseudo, context);
-        ProfileListToDo currentProfile = new Gson().fromJson(profile, ProfileListToDo.class);
-
-        return currentProfile.getMyToDoLists().get(indexOfCurrentList);
-    }
+//    public static Training getCurrentListToDo(String pseudo, int indexOfCurrentList, Context context) {
+//        String profile = Preferences.getPrefs("profile_" + pseudo, context);
+//        ProfileExercise currentProfile = new Gson().fromJson(profile, ProfileExercise.class);
+//
+//        return currentProfile.getMyToDoLists().get(indexOfCurrentList);
+//    }
 
 }

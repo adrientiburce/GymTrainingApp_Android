@@ -122,6 +122,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent resultActivity = new Intent(this, ResultActivity.class);
             startActivity(resultActivity);
         }
+        if (id == R.id.action_exercises) {
+            Intent allExowActivity = new Intent(this, ExerciseActivity.class);
+            startActivity(allExowActivity);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

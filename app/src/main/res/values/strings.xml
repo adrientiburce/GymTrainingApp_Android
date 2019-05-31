@@ -14,4 +14,8 @@
     <string name="home_seance">Mes Séances</string>
     <string name="training_name">Nom de la séance</string>
     <string name="training_add">Nouvelle séance</string>
+    <string name="title_activity_show_exercise">ShowExerciseActivity</string>
+    <string name="session_exericse">Changer l\'exercice :</string>
+    <string name="session_header">Exercice :</string>
+    <string name="title_activity_my_exercises">MyExercises</string>
 </resources>
