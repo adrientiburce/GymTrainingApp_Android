@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Session implements Serializable {
 
     private Exercise mExercise;
+    private int indexExercise;
     private int set;
     private int reps;
     private int weight;
@@ -15,8 +16,9 @@ public class Session implements Serializable {
      *
      * @param exercise of the item
      */
-    public Session(Exercise exercise) {
+    public Session(Exercise exercise, int indexExercise) {
         this.mExercise = exercise;
+        this.indexExercise = indexExercise;
     }
 
 
@@ -50,6 +52,10 @@ public class Session implements Serializable {
 
     public void setExercise(Exercise exercise) {
         mExercise = exercise;
+    }
+
+    public int getIndexExercise() {
+        return indexExercise;
     }
 
     public String getInfos() {

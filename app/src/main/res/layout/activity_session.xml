@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView_list_name"
+        android:id="@+id/txt_session_name"
         android:layout_width="match_parent"
         android:layout_height="66dp"
         android:background="@color/colorPrimaryDark"
@@ -20,8 +20,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <AutoCompleteTextView
-        android:id="@+id/edt_name"
+    <Spinner
+        android:id="@+id/edt_session_name"
         android:layout_width="253dp"
         android:layout_height="42dp"
         android:layout_marginTop="128dp"
@@ -70,7 +70,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_name" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_session_name" />
 
     <View
         android:id="@+id/divider2"
@@ -138,7 +138,7 @@
         app:fontFamily="sans-serif-light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_name" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_session_name" />
 
     <Button
         android:id="@+id/btn_submit"

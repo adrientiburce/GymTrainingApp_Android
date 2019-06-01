@@ -56,10 +56,19 @@ public class ProfileExercise implements Serializable {
         Exercise pompes = new Exercise("Pompes", "pecs");
         Exercise dc = new Exercise("DC", "pecs");
         Exercise pap = new Exercise("Papillon", "pecs");
+
         // jambes
         Exercise squat = new Exercise("Squat", "jambes");
         Exercise presse = new Exercise("Presse", "jambes");
-        Exercise ext = new Exercise("Extension", "jambes");
+        Exercise ext = new Exercise("Leg Extension", "jambes");
+        Exercise ischio = new Exercise("Leg ischio", "jambes");
+
+        // Bras
+        Exercise curl = new Exercise("Curl Bicep", "Biceps");
+        Exercise traction = new Exercise("Traction supination", "Biceps");
+        Exercise marteau = new Exercise("Curl Marteau", "Biceps");
+
+
         mesExos.add(pompes);
         mesExos.add(dc);
         mesExos.add(pap);

@@ -51,7 +51,6 @@ public class ListSessionActivity extends AppCompatActivity {
 
         // get needed info
         indexOfClickedTraining = Integer.valueOf(getIntent().getStringExtra("currentTraining"));
-
         currentProfile = Preferences.getProfile(ListSessionActivity.this);
         currentTraining = currentProfile.getMyTrainings().get(indexOfClickedTraining);
         allExercises = currentProfile.getMyExercises();
@@ -88,8 +87,7 @@ public class ListSessionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // add new exo in current training
-                currentTraining.addSession(new Session(allExercises.get(indexExoSelected)));
-
+                currentTraining.addSession(new Session(allExercises.get(indexExoSelected), indexExoSelected));
                 currentProfile.setTraining(indexOfClickedTraining, currentTraining);
                 Preferences.setPrefs("exercises", new Gson().toJson(currentProfile), ListSessionActivity.this);
 
@@ -104,12 +102,9 @@ public class ListSessionActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         // on force la récup du training updaté
         currentTraining = currentProfile.getMyTrainings().get(indexOfClickedTraining);
         generateRecyclerAdapter();
-        Log.i("CAT", "onStart");
-
     }
 
     private void generateRecyclerAdapter() {
@@ -120,12 +115,9 @@ public class ListSessionActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(Session item, int position) {
 
-                    Toast.makeText(ListSessionActivity.this, "Click exo " + position, Toast.LENGTH_SHORT).show();
                     Intent showSession = new Intent(ListSessionActivity.this, SessionActivity.class);
-
                     showSession.putExtra("currentTraining", String.valueOf(indexOfClickedTraining));
                     showSession.putExtra("sessionToDisplay", String.valueOf(position));
-
                     startActivity(showSession);
                 }
             }));
