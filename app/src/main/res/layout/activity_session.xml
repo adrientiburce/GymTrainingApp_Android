@@ -20,8 +20,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <AutoCompleteTextView
+        android:id="@+id/edt_name"
+        android:layout_width="253dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="128dp"
+        android:hint="@string/session_exericse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <SeekBar
-        android:id="@+id/seekBar2"
+        android:id="@+id/edt_weight"
         android:layout_width="229dp"
         android:layout_height="33dp"
         android:layout_marginTop="16dp"
@@ -32,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/txt_weight"
         android:layout_width="146dp"
         android:layout_height="35dp"
         android:layout_marginTop="24dp"
@@ -43,17 +53,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar2" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_weight" />
 
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView"
-        android:layout_width="253dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="128dp"
-        android:hint="@string/session_exericse"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/divider"
@@ -69,7 +70,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_name" />
 
     <View
         android:id="@+id/divider2"
@@ -82,10 +83,23 @@
         android:background="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_weight" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/edt_reps"
+        android:layout_width="125dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="Reps"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/edt_sets"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <EditText
+        android:id="@+id/edt_sets"
         android:layout_width="125dp"
         android:layout_height="44dp"
         android:layout_marginTop="36dp"
@@ -94,20 +108,7 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editText7"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="125dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="36dp"
-        android:ems="10"
-        android:hint="Reps"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/editText6"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edt_reps"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
@@ -123,7 +124,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/txt_weight"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -137,10 +138,10 @@
         app:fontFamily="sans-serif-light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_name" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_submit"
         android:layout_width="153dp"
         android:layout_height="51dp"
         android:layout_marginTop="128dp"

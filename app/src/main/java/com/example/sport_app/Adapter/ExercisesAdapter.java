@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sport_app.Model.Exercise;
 import com.example.sport_app.R;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.ItemViewHolder> {
 
 
-    private final HashMap<Integer, Exercise> listExercises;
+    private final ArrayList<Exercise> listExercises;
     private final OnItemClickListener listener;
 
     public interface OnItemClickListener {
@@ -24,7 +24,7 @@ public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.Item
     }
 
 
-    public ExercisesAdapter(HashMap listExercises, OnItemClickListener listener) {
+    public ExercisesAdapter(ArrayList<Exercise> listExercises, OnItemClickListener listener) {
         this.listExercises = listExercises;
         this.listener = listener;
     }

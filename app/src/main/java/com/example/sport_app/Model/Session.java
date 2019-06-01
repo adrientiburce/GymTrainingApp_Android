@@ -4,24 +4,21 @@ import java.io.Serializable;
 
 public class Session implements Serializable {
 
-    private String name;
+    private Exercise mExercise;
     private int set;
     private int reps;
-    private double weight;
+    private int weight;
 
 
     /**
      * Constructor with name, created from exercise list
      *
-     * @param name of the item
+     * @param exercise of the item
      */
-    public Session(String name) {
-        this.name = name;
+    public Session(Exercise exercise) {
+        this.mExercise = exercise;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getSet() {
         return set;
@@ -39,15 +36,30 @@ public class Session implements Serializable {
         this.reps = reps;
     }
 
-    public double getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
-    public String getName() {
-        return name;
+    public Exercise getExercise() {
+        return mExercise;
     }
+
+    public void setExercise(Exercise exercise) {
+        mExercise = exercise;
+    }
+
+    public String getInfos() {
+        if (set != 0 && reps != 0) {
+            return "Séries : " + set +
+                    ", Reps : " + reps +
+                    "     Poids = " + weight + "kg";
+
+        }
+        return "";
+    }
+
 }

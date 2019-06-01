@@ -19,5 +19,12 @@ public class Exercise {
     public String getMuscle() {
         return muscle;
     }
+
+
+    //use to show spinner :
+    @Override
+    public String toString() {
+        return name + " (" + muscle + ")";
+    }
 }
 

@@ -3,6 +3,7 @@ package com.example.sport_app.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -54,19 +55,25 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.ItemView
 
         private final TextView nameView;
         private final TextView muscleView;
+        private final TextView infosView;
+        private final LinearLayout itemSessionView;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             nameView = itemView.findViewById(R.id.exerciseName);
             muscleView = itemView.findViewById(R.id.exerciseMuscle);
+            infosView = itemView.findViewById(R.id.show_set_reps);
+            itemSessionView = itemView.findViewById(R.id.click_session);
         }
 
         public void bind(final Session itemData, final OnItemClickListener listener) {
             //get title from Ressource
+            nameView.setText(itemData.getExercise().getName());
+            muscleView.setText(itemData.getExercise().getMuscle());
+            infosView.setText(itemData.getInfos());
 
-            nameView.setText(itemData.getName());
             // Click listener
-            itemView.setOnClickListener(new View.OnClickListener() {
+            itemSessionView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 

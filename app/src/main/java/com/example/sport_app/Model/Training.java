@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Training implements Serializable {
 
-private ArrayList<Session> mSession = new ArrayList<>();
+    private ArrayList<Session> mSession;
 
     private String trainingName;
 
@@ -46,7 +46,7 @@ private ArrayList<Session> mSession = new ArrayList<>();
         this.mSession.add(session);
     }
 
-    public void setTask(Session item, int listIndex) {
-        this.mSession.set(listIndex, item);
+    public void setSession(int indexSession, Session updatedSession) {
+        this.mSession.set(indexSession, updatedSession);
     }
 }

@@ -31,7 +31,6 @@ public class TrainingActivity extends AppCompatActivity {
     private Button mButtonSubmit;
     RecyclerView recyclerView;
     ProfileExercise currentProfile;
-
     private String pseudo;
 
     @Override
@@ -46,9 +45,8 @@ public class TrainingActivity extends AppCompatActivity {
         currentProfile = Preferences.getProfile(TrainingActivity.this);
 
 
-        //pseudo = getIntent().getStringExtra("pseudo");
+        // add welcome messag with pseudo
         pseudo = Preferences.getPrefs("pseudo", this);
-
         txt_welcome.setText(this.getIntent().getStringExtra("welcome_message"));
 
 
@@ -88,7 +86,6 @@ public class TrainingActivity extends AppCompatActivity {
                 String newListTitle = mInputSessionName.getText().toString();
 
                 // update preferences
-                SimpleDateFormat sdf = new SimpleDateFormat("EEE d MMM");
                 Date currentDate = new Date();
 
                 // TODO change this when app finished
@@ -128,12 +125,11 @@ public class TrainingActivity extends AppCompatActivity {
                 public void onItemClick(Training item, int position) {
 
                     Intent showSession = new Intent(TrainingActivity.this, ListSessionActivity.class);
-                    showSession.putExtra("listToDisplay", String.valueOf(position));
+                    showSession.putExtra("currentTraining", String.valueOf(position));
                     startActivity(showSession);
 
                 }
             }));
         }
     }
-
 }

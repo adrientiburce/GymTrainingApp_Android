@@ -7,14 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,26 +24,20 @@ import com.example.sport_app.Model.Training;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ListSessionActivity extends AppCompatActivity {
 
     private TextView mListName;
-    private AutoCompleteTextView mInputSession;
+    private Spinner mInputSession;
     private Button mButtonSumbit;
     RecyclerView recyclerView;
 
-    // TODO
-    HashMap<String, String> CountryData;
-
     private ProfileExercise currentProfile;
-    private Training mCurrentTraining;
+    private Training currentTraining;
+    private ArrayList<Exercise> allExercises;
 
-    private HashMap<Integer, Exercise> allExercises;
-    private ArrayList<String> stringExos;
-
-    String pseudo;
-    int indexOfClickedList;
+    int indexExoSelected;
+    int indexOfClickedTraining;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,99 +47,53 @@ public class ListSessionActivity extends AppCompatActivity {
         //wire widgets
         mListName = findViewById(R.id.textView_list_name);
         mButtonSumbit = findViewById(R.id.btn_submit_task);
-        mButtonSumbit.setEnabled(false);
         mInputSession = findViewById(R.id.edt_add_task);
 
-
-        // TODO change
-        CountryData = new HashMap<String, String>();
-        CountryData.put("India", "IN");
-        CountryData.put("United States", "US");
-        CountryData.put("United Kingdom", "GB");
-        CountryData.put("Italy", "IT");
-
-
         // get needed info
-        indexOfClickedList = Integer.valueOf(getIntent().getStringExtra("listToDisplay"));
+        indexOfClickedTraining = Integer.valueOf(getIntent().getStringExtra("currentTraining"));
+
         currentProfile = Preferences.getProfile(ListSessionActivity.this);
-        mCurrentTraining = currentProfile.getMyTrainings().get(indexOfClickedList);
+        currentTraining = currentProfile.getMyTrainings().get(indexOfClickedTraining);
         allExercises = currentProfile.getMyExercises();
-        stringExos = currentProfile.getMyExercisesAsString();
 
-        // set choice list for session name
-        //ArrayList<String> allExos = currentProfile.getMyExercisesAsString();
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, stringExos );
+        // set choice list with exercises name
+        ArrayAdapter<Exercise> adapter =
+                new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, allExercises);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mInputSession.setAdapter(adapter);
 
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_dropdown_item_1line, CountryData.keySet().toArray(new String[0]));
-//        mInputSession.setThreshold(2);
-//        mInputSession.setAdapter(adapter);
-        mInputSession.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        mInputSession.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                mInputSession.showDropDown();
-                        if (!hasFocus) {
-                String exoValue = mInputSession.getText().toString();
-
-//                boolean isCorrectExo = stringExos.has();
-//                Log.v("ListSession",
-//                        "Selected Country Code: " + code);
-//                if (!isCorrectExo) {
-//                    mInputSession.setError("Invalid Country");
-//                }
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("CAT", String.valueOf(position));
+                indexExoSelected = position;
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
-
 
         //declare recyclerView
         recyclerView = findViewById(R.id.listTask);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        // generateRecyclerAdapter();
-        recyclerView.addItemDecoration(
-                new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-
-        mListName.append(" " + mCurrentTraining.getTrainingName());
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         generateRecyclerAdapter();
 
-        mInputSession.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        mListName.append(" " + currentTraining.getTrainingName());
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mButtonSumbit.setEnabled(s.toString().length() >= 2);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
         mButtonSumbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newTaskDescription = mInputSession.getText().toString();
+                // add new exo in current training
+                currentTraining.addSession(new Session(allExercises.get(indexExoSelected)));
 
-                // add new task in preferences
-                Toast.makeText(ListSessionActivity.this, "Ajout de : " + newTaskDescription, Toast.LENGTH_SHORT).show();
-
-                mCurrentTraining.addSession(new Session(newTaskDescription));
-
-                currentProfile.setTraining(mCurrentTraining, indexOfClickedList);
-
-
+                currentProfile.setTraining(indexOfClickedTraining, currentTraining);
                 Preferences.setPrefs("exercises", new Gson().toJson(currentProfile), ListSessionActivity.this);
 
                 // update view
-                mInputSession.setText("");
                 generateRecyclerAdapter();
 
             }
@@ -155,17 +101,29 @@ public class ListSessionActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // on force la récup du training updaté
+        currentTraining = currentProfile.getMyTrainings().get(indexOfClickedTraining);
+        generateRecyclerAdapter();
+        Log.i("CAT", "onStart");
+
+    }
+
     private void generateRecyclerAdapter() {
 
-        Training currentTraining = currentProfile.getMyTrainings().get(indexOfClickedList);
-
         if (currentTraining.getSession() != null) {
+            Log.i("CAT", "generate Adapter");
             recyclerView.setAdapter(new SessionAdapter(currentTraining.getSession(), new SessionAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(Session item, int position) {
 
-                    Toast.makeText(ListSessionActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ListSessionActivity.this, "Click exo " + position, Toast.LENGTH_SHORT).show();
                     Intent showSession = new Intent(ListSessionActivity.this, SessionActivity.class);
+
+                    showSession.putExtra("currentTraining", String.valueOf(indexOfClickedTraining));
                     showSession.putExtra("sessionToDisplay", String.valueOf(position));
 
                     startActivity(showSession);

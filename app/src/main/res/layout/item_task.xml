@@ -1,27 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/click_session"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="15dp"
-    >
+    android:orientation="vertical"
+    android:padding="15dp">
 
-    <TextView
-        android:id="@+id/exerciseName"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:text="nom de l'exo"
-        android:textSize="25dp" />
-
-    <TextView
-        android:id="@+id/exerciseMuscle"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="fill_vertical"
-        android:paddingLeft="50dp"
-        android:text="muscle"
-        android:textSize="18dp" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/exerciseName"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="nom de l'exo"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/exerciseMuscle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="fill_vertical"
+            android:paddingLeft="50dp"
+            android:text="muscle"
+            android:textAllCaps="true"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/show_set_reps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:text="Reps et Set  à XX kg"
+        android:textSize="20dp" />
+
 
 </LinearLayout>
