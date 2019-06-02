@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 public class ExerciseActivity extends AppCompatActivity {
 
@@ -30,15 +31,11 @@ public class ExerciseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
 
         //wire widgets
         edtMuscle = findViewById(R.id.edt_muscle);
         edtExerciseName = findViewById(R.id.edt_exerciseName);
         mButtonSubmit = findViewById(R.id.submit_exercise);
-
 
         allExercises = Preferences.getProfile(ExerciseActivity.this);
 

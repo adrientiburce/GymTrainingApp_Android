@@ -74,7 +74,6 @@ public class SessionActivity extends AppCompatActivity {
         super.onStart();
 
         // set infos if previously created
-        txtSessionName.append(" " + currentSession.getExercise().getName());
         showWeight.setText(String.valueOf(currentSession.getWeight()) + " kg");
         edtWeight.setProgress(currentSession.getWeight());
         edtReps.setText(String.valueOf(currentSession.getReps()));
@@ -93,6 +92,7 @@ public class SessionActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 indexExoSelected = position;
+                txtSessionName.setText("Exercice : " + allExercises.get(indexExoSelected).getName());
             }
 
             @Override
@@ -100,7 +100,6 @@ public class SessionActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         edtWeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

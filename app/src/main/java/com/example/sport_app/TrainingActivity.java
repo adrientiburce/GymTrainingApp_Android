@@ -1,5 +1,6 @@
 package com.example.sport_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import com.example.sport_app.Adapter.TrainingAdapter;
 import com.example.sport_app.Model.ProfileExercise;
 import com.example.sport_app.Model.Training;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
@@ -26,12 +29,33 @@ import java.util.Date;
 
 public class TrainingActivity extends AppCompatActivity {
 
-    private TextView txt_welcome;
     private EditText mInputSessionName;
     private Button mButtonSubmit;
     RecyclerView recyclerView;
     ProfileExercise currentProfile;
-    private String pseudo;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    Intent homeActivity = new Intent(TrainingActivity.this, MainActivity.class);
+                    startActivity(homeActivity);
+                    return true;
+                case R.id.navigation_exercises:
+                    Intent allExowActivity = new Intent(TrainingActivity.this, ExerciseActivity.class);
+                    startActivity(allExowActivity);
+                    return true;
+                case R.id.navigation_trainings:
+                    Intent trainingActivity = new Intent(TrainingActivity.this, TrainingActivity.class);
+                    startActivity(trainingActivity);
+                    return true;
+            }
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,27 +63,23 @@ public class TrainingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_training);
 
         //wire widgets
-        txt_welcome = findViewById(R.id.txt_welcome);
         mInputSessionName = findViewById(R.id.edt_add_list);
         mButtonSubmit = findViewById(R.id.btn_submit_list);
         currentProfile = Preferences.getProfile(TrainingActivity.this);
-
-
-        // add welcome messag with pseudo
-        pseudo = Preferences.getPrefs("pseudo", this);
-        txt_welcome.setText(this.getIntent().getStringExtra("welcome_message"));
-
-
         mButtonSubmit.setEnabled(false);
+
+        BottomNavigationView bottomNavView = findViewById(R.id.nav_view);
+        bottomNavView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
 
         //declare recyclerView
         recyclerView = findViewById(R.id.listToDo);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
         generateRecyclerAdapter();
-
-        //generateRecyclerAdapter();
-        recyclerView.addItemDecoration(
-                new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         mInputSessionName.addTextChangedListener(new TextWatcher() {
 
@@ -83,15 +103,12 @@ public class TrainingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                // get info
                 String newListTitle = mInputSessionName.getText().toString();
-
-                // update preferences
                 Date currentDate = new Date();
 
-                // TODO change this when app finished
+                // persist Preferences
                 currentProfile.addTraining(new Training(newListTitle, currentDate));
-                //createDebugList(newListTitle, currentProfile);
-
                 Gson gson = new Gson();
                 Preferences.setPrefs("exercises", gson.toJson(currentProfile), TrainingActivity.this);
 
@@ -103,19 +120,6 @@ public class TrainingActivity extends AppCompatActivity {
         });
 
     }
-
-
-//    private void createDebugList(String newListTitle, ProfileExercise currentProfile) {
-//        if (newListTitle.equals("debug")) {
-//            Training debugRecyclerList = new Training(new ArrayList<Session>(), newListTitle);
-//            for (int i = 0; i < 50; i++) {
-//                debugRecyclerList.addSession(new Session("tache n° " + i));
-//            }
-//            currentProfile.addToDoList(debugRecyclerList);
-//        } else {
-//            currentProfile.addToDoList(new Training(newListTitle));
-//        }
-//    }
 
     private void generateRecyclerAdapter() {
 
