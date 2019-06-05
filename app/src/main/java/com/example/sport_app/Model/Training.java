@@ -29,6 +29,10 @@ public class Training implements Serializable {
         this.trainingName = titreListToDo;
     }
 
+    public void removeSession(int indexSession){
+        this.mSession.remove(indexSession);
+    }
+
     public ArrayList<Session> getSession() {
         return mSession;
     }

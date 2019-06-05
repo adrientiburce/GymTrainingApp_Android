@@ -4,27 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:background="?attr/selectableItemBackground"
+    android:orientation="horizontal"
+    android:padding="10dp"
     >
 
     <TextView
+        android:layout_weight = "1"
         android:id="@+id/txt_exercise"
-        android:layout_width="180dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
-        android:paddingLeft="20dp"
         android:textSize="20dp"
         app:fontFamily="sans-serif-medium"
         tools:text="Nom de l'exo" />
 
     <TextView
+        android:layout_weight = "1"
         android:id="@+id/txt_muscle"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
+        android:gravity="center"
+        android:textColor="@color/bluePrimary"
         android:textSize="18dp"
         app:fontFamily="sans-serif-condensed-light"
         tools:text="Muscle concerné" />

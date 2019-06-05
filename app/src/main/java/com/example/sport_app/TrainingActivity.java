@@ -68,9 +68,16 @@ public class TrainingActivity extends AppCompatActivity {
         currentProfile = Preferences.getProfile(TrainingActivity.this);
         mButtonSubmit.setEnabled(false);
 
+        //navigation
         BottomNavigationView bottomNavView = findViewById(R.id.nav_view);
         bottomNavView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         //declare recyclerView
         recyclerView = findViewById(R.id.listToDo);

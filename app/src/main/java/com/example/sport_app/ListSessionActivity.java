@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sport_app.Adapter.SessionAdapter;
 import com.example.sport_app.Model.Exercise;
@@ -118,6 +119,7 @@ public class ListSessionActivity extends AppCompatActivity {
         mButtonSumbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // add new exo in current training
                 currentTraining.addSession(new Session(allExercises.get(indexExoSelected), indexExoSelected));
                 currentProfile.setTraining(indexOfClickedTraining, currentTraining);
@@ -143,16 +145,29 @@ public class ListSessionActivity extends AppCompatActivity {
 
         if (currentTraining.getSession() != null) {
             Log.i("CAT", "generate Adapter");
-            recyclerView.setAdapter(new SessionAdapter(currentTraining.getSession(), new SessionAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(Session item, int position) {
+            recyclerView.setAdapter(new SessionAdapter(currentTraining.getSession(),
+                    new SessionAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(Session item, int position) {
 
-                    Intent showSession = new Intent(ListSessionActivity.this, SessionActivity.class);
-                    showSession.putExtra("currentTraining", String.valueOf(indexOfClickedTraining));
-                    showSession.putExtra("sessionToDisplay", String.valueOf(position));
-                    startActivity(showSession);
-                }
-            }));
+                            Intent showSession = new Intent(ListSessionActivity.this, SessionActivity.class);
+                            showSession.putExtra("currentTraining", String.valueOf(indexOfClickedTraining));
+                            showSession.putExtra("sessionToDisplay", String.valueOf(position));
+                            startActivity(showSession);
+                        }
+                    },
+                    new SessionAdapter.OnItemDeleteClickListener() {
+                        @Override
+                        public void onItemClick(Session item, int position) {
+
+                            Toast.makeText(ListSessionActivity.this, item.getExercise().toString() + " supprimé " + position, Toast.LENGTH_SHORT).show();
+
+                            // remove session from Training
+                            currentProfile.setTraining(indexOfClickedTraining, currentTraining);
+                            Preferences.setPrefs("exercises", new Gson().toJson(currentProfile), ListSessionActivity.this);
+                        }
+                    }
+            ));
         }
     }
 }

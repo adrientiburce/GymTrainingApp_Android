@@ -3,6 +3,8 @@ package com.example.sport_app.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -55,6 +57,7 @@ public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.Item
         private final TextView textNameView;
         private final TextView textMuscleView;
 
+
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             textNameView = itemView.findViewById(R.id.txt_exercise);
@@ -67,7 +70,7 @@ public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.Item
             textMuscleView.setText(itemData.getMuscle());
 
             // Click listener
-            itemView.setOnClickListener(new View.OnClickListener() {
+            textNameView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -75,6 +78,8 @@ public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.Item
                     listener.onItemClick(itemData, position);
                 }
             });
+
         }
+
     }
 }

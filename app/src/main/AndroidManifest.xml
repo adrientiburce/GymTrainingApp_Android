@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".NavActivity"
-            android:label="@string/title_activity_nav"></activity>
-        <activity
             android:name=".ExerciseActivity"
             android:label="@string/title_activity_my_exercises"
             android:theme="@style/AppTheme.NoActionBar" />

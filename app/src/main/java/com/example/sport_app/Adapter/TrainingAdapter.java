@@ -35,7 +35,7 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.ItemVi
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView = inflater.inflate(R.layout.item_list, parent, false);
+        View itemView = inflater.inflate(R.layout.item_training, parent, false);
         return new ItemViewHolder(itemView);
     }
 

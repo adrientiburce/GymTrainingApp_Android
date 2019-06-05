@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/click_session"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="?attr/selectableItemBackground"
+    android:orientation="vertical"
     android:padding="15dp">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        android:id="@+id/click_session"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -35,14 +35,31 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/show_set_reps"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:text="Reps et Set  à XX kg"
-        android:textSize="20dp" />
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/show_set_reps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:text="Reps et Set  à XX kg"
+            android:textSize="20dp" />
+
+        <ImageButton
+            android:id="@+id/btn_delete"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_delete" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

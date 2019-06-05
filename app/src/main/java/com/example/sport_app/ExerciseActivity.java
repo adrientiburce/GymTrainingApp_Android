@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class ExerciseActivity extends AppCompatActivity {
 
@@ -55,14 +57,8 @@ public class ExerciseActivity extends AppCompatActivity {
                 String exerciseInput = edtExerciseName.getText().toString();
 
                 // update preferences
-
-
-                // TODO use debug to check recycler view
                 allExercises.addExercise(new Exercise(exerciseInput, muscleInput));
-                //createDebugList(muscleInput, exerciseInput, currentProfile);
-
-                Gson gson = new Gson();
-                Preferences.setPrefs("exercises", gson.toJson(allExercises), ExerciseActivity.this);
+                Preferences.setPrefs("exercises", new Gson().toJson(allExercises), ExerciseActivity.this);
 
                 // update view
                 edtMuscle.setText("");
@@ -72,27 +68,19 @@ public class ExerciseActivity extends AppCompatActivity {
         });
     }
 
-//    private void createDebugList(String newListTitle, ProfileExercise currentProfile) {
-//        if (newListTitle.equals("debug")) {
-//            Training debugRecyclerList = new Training(new ArrayList<Session>(), newListTitle);
-//            for (int i = 0; i < 50; i++) {
-//                debugRecyclerList.addSession(new Session("tache n° " + i));
-//            }
-//            currentProfile.addToDoList(debugRecyclerList);
-//        } else {
-//            currentProfile.addToDoList(new Training(newListTitle));
-//        }
-//    }
 
     private void generateRecyclerAdapter() {
 
         if (allExercises != null) {
-            recyclerView.setAdapter(new ExercisesAdapter(allExercises.getMyExercises(), new ExercisesAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(Exercise item, int position) {
+            recyclerView.setAdapter(new ExercisesAdapter(allExercises.getMyExercises(),
+                    new ExercisesAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(Exercise item, int position) {
 
-                }
-            }));
+                        }
+                    }
+
+            ));
         }
     }
 
