@@ -8,4 +8,5 @@
     <color name="blueSecondary">#77A3E5</color>
     <color name="white">#FFF</color>
     <color name="grey">#dbdbdb</color>
+    <color name="greyLight">#eee</color>
 </resources>

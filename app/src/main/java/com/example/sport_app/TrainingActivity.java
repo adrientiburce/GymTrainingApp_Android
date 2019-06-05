@@ -97,7 +97,7 @@ public class TrainingActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mButtonSubmit.setEnabled(s.toString().length() > 2);
+                mButtonSubmit.setEnabled(s.toString().length() > 1);
             }
 
             @Override

@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/logo"
+        android:icon="@mipmap/ic_sport_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/logo_round"
+        android:roundIcon="@mipmap/ic_sport_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity

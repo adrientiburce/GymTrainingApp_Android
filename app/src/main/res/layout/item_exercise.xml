@@ -10,10 +10,10 @@
     >
 
     <TextView
-        android:layout_weight = "1"
+        android:layout_weight="0"
         android:id="@+id/txt_exercise"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
         android:textSize="20dp"
@@ -21,7 +21,7 @@
         tools:text="Nom de l'exo" />
 
     <TextView
-        android:layout_weight = "1"
+        android:layout_weight="1"
         android:id="@+id/txt_muscle"
         android:layout_width="match_parent"
         android:layout_height="40dp"

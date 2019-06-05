@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +33,7 @@ public class ListSessionActivity extends AppCompatActivity {
 
     private TextView mListName;
     private Spinner mInputSession;
-    private Button mButtonSumbit;
+    private ImageButton mButtonSumbit;
     RecyclerView recyclerView;
 
     private ProfileExercise currentProfile;

@@ -25,9 +25,11 @@
         android:id="@+id/listTask"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:padding="10dp"
-        android:paddingBottom="56dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         app:layout_constraintBottom_toTopOf="@+id/submit_area"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -38,26 +40,29 @@
         android:id="@+id/submit_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:background="@color/greyLight"
         android:orientation="horizontal"
         android:padding="15dp"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Spinner
             android:id="@+id/edt_add_task"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:inputType="textPersonName"
             android:text="@string/exercice_name"
             android:textSize="18dp" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_submit_task"
-            android:layout_width="match_parent"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/exercice_add" />
+            android:layout_weight="0"
+            android:background="@color/grey"
+            android:src="@android:drawable/ic_input_add" />
 
     </LinearLayout>
 
